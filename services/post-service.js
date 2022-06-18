@@ -1,15 +1,15 @@
 import Post from '../models/posts.js';
-import fileService from './file-servise.js';
+import FileService from './file-servise.js';
 
 
 class PostService {
-  async create(post, picture) {
-    const fileName = fileService.saveFile(picture);
-    const createdPost = await Post.create({...post, picture: fileName});
+  async create(post, picture) {  
+    const fileName = FileService.saveFile(picture);
+    const createdPost = await Post.create({...post, picture: fileName});    
     return createdPost;
   }
 
-  async getAll(req, res) {
+  async getAll() {
     const posts = await Post.find();
     return posts;
   }

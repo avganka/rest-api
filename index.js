@@ -12,25 +12,26 @@ const PORT = process.env.PORT || 3000;
 // middlewares
 app.use(express.json());
 app.use(express.static('static'));
-app.use(fileUpload());
+app.use(fileUpload({
+	createParentPath: true,
+}));
 app.use('/api', router);
 
-// routes
 
-app.post('/', async (req, res) => {
-	try {
-		const { author, title, content, picture } = req.body;
-		const post = await Post.create({
-			author,
-			title,
-			content,
-			picture,
-		});
-		res.json(post);
-	} catch (error) {
-	res.status(500).json(error)
-	}
-})
+// app.post('/', async (req, res) => {
+// 	try {
+// 		const { author, title, content, picture } = req.body;
+// 		const post = await Post.create({
+// 			author,
+// 			title,
+// 			content,
+// 			picture,
+// 		});
+// 		res.json(post);
+// 	} catch (error) {
+// 	res.status(500).json(error)
+// 	}
+// })
 
 async function start() {
 	try {
