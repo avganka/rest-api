@@ -1,9 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import 'dotenv/config';
-import Post from './models/posts.js';
-import router from './routes/router.js';
+import router from './routes/root-router.js';
 import fileUpload from 'express-fileupload';
+import errorHandler from './middlewares/error-handler.js';
 
 const app = express();
 
@@ -15,23 +15,8 @@ app.use(express.static('static'));
 app.use(fileUpload({
 	createParentPath: true,
 }));
-app.use('/api', router);
-
-
-// app.post('/', async (req, res) => {
-// 	try {
-// 		const { author, title, content, picture } = req.body;
-// 		const post = await Post.create({
-// 			author,
-// 			title,
-// 			content,
-// 			picture,
-// 		});
-// 		res.json(post);
-// 	} catch (error) {
-// 	res.status(500).json(error)
-// 	}
-// })
+app.use('/quiz', router);
+app.use(errorHandler);
 
 async function start() {
 	try {
