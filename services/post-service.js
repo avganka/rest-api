@@ -9,13 +9,15 @@ class PostService {
     return createdPost;
   }
 
-  async getAll() {
-    const posts = await Post.find();
-    return posts;
+  async getAll(limit) {    
+    if (limit) {
+      return await Post.find().limit(limit);
+    }
+    return await Post.find();    
   }
 
   async getOne(id) {
-    if (!id) {
+    if (!id) {      
       throw new Error('ID не указан')
     }
     const post = await Post.findById(id);
@@ -36,6 +38,7 @@ class PostService {
       throw new Error('ID не указан')
     }
     const post = await Post.findByIdAndDelete(id);
+    FileService.deleteFile(post.picture);
     return post;
   }
 }

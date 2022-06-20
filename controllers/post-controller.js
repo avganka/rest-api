@@ -2,14 +2,13 @@ import PostService from '../services/post-service.js';
 
 class PostController {
   async create(req, res) {
-    try {     
-      console.log(req.files)
+    try {
       let post = {};
       if (req.files) {
-        post = await PostService.create(req.body, req.files.picture);    
+        post = await PostService.create(req.body, req.files.picture);
       } else {
-        post = await PostService.create(req.body);    
-      }      
+        post = await PostService.create(req.body);
+      }
       res.json(post);
     } catch (error) {
       res.status(500).json(error.message)
@@ -18,7 +17,8 @@ class PostController {
 
   async getAll(req, res) {
     try {
-      const posts = await PostService.getAll()
+      const limit = req.query.limit;
+      const posts = await PostService.getAll(limit)
       return res.json(posts);
     } catch (error) {
       res.status(500).json(error)
@@ -51,7 +51,6 @@ class PostController {
       res.status(500).json(error)
     }
   }
-
 }
 
 export default new PostController();
