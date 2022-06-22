@@ -1,13 +1,12 @@
 import mongoose from "mongoose";
 
-const QuestionSchema = new mongoose.Schema({
-  packId: { type: String, required: true },
+export const QuestionSchema = new mongoose.Schema({
   categoryId: { type: String, required: true },
   type: { type: String, required: true },
   text: {type: String, required: true},
-  file: {type: String},
   answer: {type: String, required: true},
-  points: { type: Number, required: true },
+  file: {type: String},
+  points: { type: Number, required: true},
 })
 
 export default mongoose.model('Question', QuestionSchema);

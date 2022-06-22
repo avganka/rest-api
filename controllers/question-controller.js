@@ -9,6 +9,7 @@ class QuestionController {
       } else {
         question = await QuestionService.create(req.body);
       }
+
       res.json(question);
     } catch (error) {
       res.status(500).json(error.message)
@@ -19,6 +20,8 @@ class QuestionController {
     try {
       const limit = req.query.limit;
       const questions = await QuestionService.getAll(limit)
+      res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Headers', 'origin, content-type, accept');
       return res.json(questions);
     } catch (error) {
       res.status(500).json(error)

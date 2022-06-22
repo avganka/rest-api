@@ -1,7 +1,5 @@
-import Question from '../models/questions.js';
+import Question from '../models/question.js';
 import FileService from './file-servise.js';
-
-
 class QuestionService {
   async create(question, file) {    
     if (file) {      
