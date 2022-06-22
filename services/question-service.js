@@ -3,14 +3,12 @@ import FileService from './file-servise.js';
 
 
 class QuestionService {
-  async create(post, file) {
-    let  createdQuestion;
+  async create(question, file) {    
     if (file) {      
       const fileName = FileService.saveFile(file);
-      createdQuestion = await Question.create({ ...post, file: fileName });
+      return await Question.create({ ...question, file: fileName });     
     }
-    createdQuestion = await Question.create({ ...post});
-    return createdQuestion;
+    return await Question.create({ ...question});  
   }
 
   async getAll(limit) {

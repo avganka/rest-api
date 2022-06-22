@@ -3,9 +3,9 @@ import QuestionService from '../services/question-service.js';
 class QuestionController {
   async create(req, res) {
     try {      
-      let question = {};
-      if (req.files) {
-        question = await QuestionService.create(req.body, req.files.picture);
+      let question;
+      if (req.files) {    
+        question = await QuestionService.create(req.body, req.files.file);
       } else {
         question = await QuestionService.create(req.body);
       }
