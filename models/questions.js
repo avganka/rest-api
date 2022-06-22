@@ -5,7 +5,7 @@ const QuestionSchema = new mongoose.Schema({
   categoryId: { type: String, required: true },
   type: { type: String, required: true },
   text: {type: String, required: true},
-  files: {type: String},
+  file: {type: String},
   answer: {type: String, required: true},
   points: { type: Number, required: true },
 })

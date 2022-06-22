@@ -3,13 +3,13 @@ import QuestionService from '../services/question-service.js';
 class QuestionController {
   async create(req, res) {
     try {      
-      let post = {};
+      let question = {};
       if (req.files) {
-        post = await QuestionService.create(req.body, req.files.picture);
+        question = await QuestionService.create(req.body, req.files.picture);
       } else {
-        post = await QuestionService.create(req.body);
+        question = await QuestionService.create(req.body);
       }
-      res.json(post);
+      res.json(question);
     } catch (error) {
       res.status(500).json(error.message)
     }
@@ -18,8 +18,8 @@ class QuestionController {
   async getAll(req, res) {
     try {
       const limit = req.query.limit;
-      const posts = await QuestionService.getAll(limit)
-      return res.json(posts);
+      const questions = await QuestionService.getAll(limit)
+      return res.json(questions);
     } catch (error) {
       res.status(500).json(error)
     }
@@ -27,8 +27,8 @@ class QuestionController {
 
   async getOne(req, res) {
     try {
-      const post = await QuestionService.getOne(req.params.id);
-      return res.json(post);
+      const question = await QuestionService.getOne(req.params.id);
+      return res.json(question);
     } catch (error) {
       res.status(500).json(error)
     }
@@ -36,8 +36,8 @@ class QuestionController {
 
   async update(req, res) {
     try {
-      const updatedPost = await QuestionService.update(req.body)
-      return res.json(updatedPost);
+      const updatedQuestion = await QuestionService.update(req.body)
+      return res.json(updatedQuestion);
     } catch (error) {
       res.status(500).json(error.message)
     }
@@ -45,8 +45,8 @@ class QuestionController {
 
   async delete(req, res) {
     try {
-      const post = await QuestionService.delete(req.params.id);
-      return res.json(post);
+      const question = await QuestionService.delete(req.params.id);
+      return res.json(question);
     } catch (error) {
       res.status(500).json(error)
     }

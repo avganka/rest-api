@@ -3,14 +3,14 @@ import FileService from './file-servise.js';
 
 
 class QuestionService {
-  async create(post, picture) {
-    let  createdPost;
-    if (picture) {      
-      const fileName = FileService.saveFile(picture);
-      createdPost = await Question.create({ ...post, picture: fileName });
+  async create(post, file) {
+    let  createdQuestion;
+    if (file) {      
+      const fileName = FileService.saveFile(file);
+      createdQuestion = await Question.create({ ...post, file: fileName });
     }
-    createdPost = await Question.create({ ...post});
-    return createdPost;
+    createdQuestion = await Question.create({ ...post});
+    return createdQuestion;
   }
 
   async getAll(limit) {
@@ -24,16 +24,16 @@ class QuestionService {
     if (!id) {
       throw new Error('ID не указан')
     }
-    const post = await Question.findById(id);
-    return post;
+    const question = await Question.findById(id);
+    return question;
   }
 
   async update(post) {
     if (!post._id) {
       throw new Error('ID не указан')
     }
-    const updatedPost = await Question.findByIdAndUpdate(post._id, post, { new: true });
-    return updatedPost;
+    const updatedQuestion = await Question.findByIdAndUpdate(post._id, post, { new: true });
+    return updatedQuestion;
 
   }
 
@@ -41,8 +41,10 @@ class QuestionService {
     if (!id) {
       throw new Error('ID не указан')
     }
-    const post = await Question.findByIdAndDelete(id);
-    FileService.deleteFile(post.picture);
+    const question = await Question.findByIdAndDelete(id);
+    if (question.file) {
+      FileService.deleteFile(question.file);
+    }
     return post;
   }
 }
