@@ -1,4 +1,4 @@
-import Post from '../models/posts.js';
+import Post from '../models/post.js';
 import FileService from './file-servise.js';
 
 
