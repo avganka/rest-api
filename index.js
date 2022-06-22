@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import router from './routes/root-router.js';
@@ -10,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // middlewares
+app.use(cors());
 app.use(express.json());
 app.use(express.static('static'));
 app.use(fileUpload({
