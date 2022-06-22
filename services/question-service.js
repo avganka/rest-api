@@ -26,11 +26,11 @@ class QuestionService {
     return question;
   }
 
-  async update(post) {
-    if (!post._id) {
+  async update(question) {
+    if (!question._id) {
       throw new Error('ID не указан')
     }
-    const updatedQuestion = await Question.findByIdAndUpdate(post._id, post, { new: true });
+    const updatedQuestion = await Question.findByIdAndUpdate(question._id, question, { new: true });
     return updatedQuestion;
 
   }
@@ -43,7 +43,7 @@ class QuestionService {
     if (question.file) {
       FileService.deleteFile(question.file);
     }
-    return post;
+    return question;
   }
 }
 
