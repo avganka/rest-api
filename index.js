@@ -7,7 +7,7 @@ import errorHandler from './middlewares/error-handler.js';
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // middlewares
 app.use(express.json());
@@ -20,7 +20,7 @@ app.use(errorHandler);
 
 async function start() {
 	try {
-		await mongoose.connect(process.env.MONGO_URL, {
+		await mongoose.connect(process.env.MONGO_LOCAL_URL, {
 			useNewUrlParser: true,
 		})
 		console.log("Connected to mongoDB");
