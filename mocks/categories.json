@@ -1,0 +1,12 @@
+[
+  {
+    "packId": "62b34fc460dcf9ccdfb23d91",
+    "name": "Флаги",
+    "questions": ["62b3531f60dcf9ccdfb23d9b","62b3531f60dcf9ccdfb23d9c","62b3531f60dcf9ccdfb23d9d","62b3531f60dcf9ccdfb23d9e","62b3531f60dcf9ccdfb23d9f"]
+  },
+  {
+    "packId": "62b34fc460dcf9ccdfb23d91",
+    "name": "Высокие технологии",
+    "questions": ["62b3531f60dcf9ccdfb23da0","62b3531f60dcf9ccdfb23da1","62b3531f60dcf9ccdfb23da2","62b3531f60dcf9ccdfb23da3"]
+  }
+]
