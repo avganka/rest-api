@@ -4,8 +4,9 @@ import fs from 'fs';
 
 class FileService {
   saveFile(file) {
-    try {
-      const fileName = uuid.v4() + '.jpg';
+    try {   
+      const extension = file.name.match(/\.([^.]+)$/)[1];     
+      const fileName = uuid.v4() + "." + extension;      
       const filePath = path.resolve('static', fileName);
       file.mv(filePath);
       return fileName;
